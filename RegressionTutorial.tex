@@ -1,0 +1,55 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\title{Regressions}
+\author{Luiz Augusto Schmidt}
+\date{\today}
+
+\begin{document}
+	\maketitle
+	Before we properly begin, it may be useful to make the following definitions explicit:
+		\begin{equation*}
+			\begin{split}
+				\overline{a} &:= \frac{\sum_{k=1}^{n} a_{k}}{n} \\
+				\overline{x^{2}} &:= \frac{\sum_{k = 1}^{n} x_{k}^{2}}{n} \\
+				S_{ab} &:= \sum_{k = 1}^{n}(a_{k} - \overline{a})(b_{k} - \overline{b}) \\
+				\forall &a, b, x \in \mathbb{R}  \quad \& \quad \forall k \in \mathbb{N} 
+			\end{split}
+		\end{equation*}
+	\section{Linear Regression}
+		A linear regression is the simplest of regression types. It seeks to find the  straight line that best fits the set of given points, using the least squares method (more on that later). In terms of formulae, it takes the following form: \[y = ax + b\], in which we need to find both $a$ and $b$.  We can calculate the value of the angular coefficient $a$ using the following expression: 
+		\begin{equation}
+			a = \frac{\sum_{k = 1}^{n} (x_{k} - \overline{x})(y_{k} - \overline{y})}{\sum_{k = 1}^{n} (x_{k} - \overline{x})^{2}}
+		\end{equation}
+		which was derived from the use of heavy obscure mathemagics.
+		
+		Since that value for $a$ may be invalid for some particular points in the graph, we write that \[\overline{y} = a\overline{x} + b\], thus arriving at the expression we'll use to calculate the value of \(b\):
+		\begin{equation}
+			b = \overline{y} - a\overline{x}
+		\end{equation} 
+		
+		
+	\section{Quadratic Regression}
+		Linear Regression won't always be the best method to find patterns in your data though. This and the following sections will discuss other regression methods to find the curve that best fits your data.
+		
+		Quadratic regression is the method through which we find the parabola that best fits the set of given points. It takes on the form of a general parabola \[y = ax^{2} + bx + c\], leaving us with the task of finding the values of \(a\), \(b\) and \(c\) that minimize the sum of the squares of the distance of the points to the curve (i.e. satisfies the least squares method).  Upon sleeping and dreaming, Euler himself reveals to us that \(a\) and \(b\) can be calculated using the following formulae:
+
+			\begin{equation}
+				a = \frac{S_{x^{2}y} \cdot S_{xx} - S_{xy} \cdot S_{xx^{2}}}{S_{xx}\cdot S_{x^{2}x^{2}} - S_{xx^{2}}^{2}} \\
+			\end{equation}
+			\begin{equation}
+				b = \frac{S_{xy} \cdot S_{x^{2}x^{2}} - S_{x^{2}y} \cdot S_{xx^{2}}}{S_{xx}\cdot S_{x^{2}x^{2}} - S_{xx^{2}}^{2}} \\
+			\end{equation}
+			\begin{equation}
+				c = \overline{y} - b\cdot \overline{x} - a \cdot \overline(x^{2})
+			\end{equation}
+		
+		
+	\section{Cubic Regression}
+	\section{Exponential Regression}
+	\section{Logarithmic Regression}
+	\section{Logistical Regression}
+	\section*{The least squares method}
+\end{document}

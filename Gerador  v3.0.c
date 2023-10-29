@@ -25,7 +25,7 @@ void inicializa_arq(const char* project_name, const char* author, const char* da
 }
 
 int main(){
-	FILE *fptr_main;
+	FILE *fptr_main; //This is a damn mess
 	FILE *fptr_aux;
 	const char grafico[] = "Grafico";
 	char graf_copia[160] = "Grafico";
