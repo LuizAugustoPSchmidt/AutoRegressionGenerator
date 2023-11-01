@@ -1,0 +1,15 @@
+Algoritmo de regressão (mulithread version)
+
+1. Ler dados do gráfico
+2. Calcular os somatórios necessários
+(Rodar daqui pra baixo em paralelo para cada tipo de regressão)
+3. Chutar valores dos coeficientes
+4. Calcular erro quadrático
+5. Chutar novos valores para os coeficientes
+6. Calcular erro novamente
+7. Se erro novo < erro antigo, descartar coeficientes antigos em favor dos novos
+8. Continuar até atingir precisão desejada
+9.
+
+Como calcular o novo chute? Um valor aleatório vai ser muito ineficiente...
+Ver: método de Gauss-Newton

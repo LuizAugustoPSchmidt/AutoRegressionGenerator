@@ -1,9 +1,10 @@
 #include <stdio.h>
-#include <direct.h>
+//#include <direct.h>
 #include "Generator.h"
 #include <string.h>
+#include <stdlib.h>
 
-void initialize_tex_file(FILE *fptr){
+void initialize_tex_file(FILE *fptr, Project project){
     fprintf(fptr, "\\documentclass{article}\n");
     fprintf(fptr, "\n\\usepackage{graphicx}\n");
     fprintf(fptr, "\\usepackage{pgfplotstable}\n");
@@ -16,7 +17,7 @@ void initialize_tex_file(FILE *fptr){
     fprintf(fptr, "\\maketitle\n");
 }
 
-void end_tex_file(FILE *fptr){
+void end_tex_file(FILE *fptr, Project project){
     char* auxString;
 
     fprintf(fptr, "\\end{document}");

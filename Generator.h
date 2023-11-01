@@ -10,15 +10,15 @@ typedef struct project{
     FILE* auxPtr;
 }Project;
 
-int getSizeFloat(v[]);
+int getSizeFloat(float v[]);
 
-int getSizeDouble(v[]);
+int getSizeDouble(double v[]);
 
-int getSizeInt(v[]);
+int getSizeInt(int v[]);
 
-void initialize_tex_file(FILE *fptr, const char* projectName, const char* author, const char* date);
+void initialize_tex_file(FILE *fptr, Project project);
 
-void end_tex_file(FILE *fptr, const char* projectName);
+void end_tex_file(FILE *fptr, Project project);
 
 void makeLinearGraph(float Vx[], float Vy[]);
 
@@ -34,4 +34,4 @@ void makeLogisticalGraph(); //Haven't even studied logistical regression yet, th
 
 double sumAll(double v[]);
 
-double calcAverage()
+double calcAverage();
