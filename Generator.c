@@ -1,8 +1,17 @@
-#include <stdio.h>
-//#include <direct.h>
 #include "Generator.h"
-#include <string.h>
-#include <stdlib.h>
+
+
+int getSizeDouble(double v[]){
+    return (int)sizeof(v) / sizeof(double);
+}
+
+int getSizeFloat(float v[]){
+    return (int)sizeof(v) / sizeof(float);
+}
+
+int getSizeInt(int v[]){
+    return (int)sizeof(v) / sizeof(int);
+}
 
 void initialize_tex_file(FILE *fptr, Project project){
     fprintf(fptr, "\\documentclass{article}\n");
@@ -30,5 +39,28 @@ void end_tex_file(FILE *fptr, Project project){
     system(auxString);
 }
 
-void makeGraph(){}
+void makeLinearGraph(float *Vx, float *Vy){}
 
+void makeQuadracticGraph(float a, float b, float c){}
+
+void makeCubicGraph(float a, float b, float c, float d) {}
+
+void makeExponentialGraph(float a, float b){}
+
+void makeLogarithmicGraph(){}
+
+void makeLogisticalGraph(){}
+
+double sumAll(double *v, int exponent){
+    double sum = 0;
+
+    for(int i = 0; i < getSize(v); i++){
+        sum += pow(v[i], exponent);
+    }
+
+    return sum;
+}
+
+double calcAverage(double v[]){
+    return sumAll(v, 1) / getSize(v);
+}
