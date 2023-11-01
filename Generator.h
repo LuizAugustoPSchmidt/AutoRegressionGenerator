@@ -4,10 +4,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define getSize(X) _Generic((X), \
-                                float*: getSizeFloat(X), \
-                                int*: getSizeInt(X), \
-                                double*: getSizeDouble(X))
+#define getArraySize(v) (sizeof(v)/sizeof(v[0])) //Do not use this macro with pointers, only with arrays
 
 typedef struct project{
     char* name;
@@ -16,12 +13,6 @@ typedef struct project{
     FILE* mainPtr;
     FILE* auxPtr;
 }Project;
-
-int getSizeFloat(float v[]);
-
-int getSizeDouble(double v[]);
-
-int getSizeInt(int v[]);
 
 void initialize_tex_file(FILE *fptr, Project project);
 

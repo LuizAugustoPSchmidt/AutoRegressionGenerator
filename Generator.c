@@ -1,18 +1,5 @@
 #include "Generator.h"
 
-
-int getSizeDouble(double v[]){
-    return (int)sizeof(v) / sizeof(double);
-}
-
-int getSizeFloat(float v[]){
-    return (int)sizeof(v) / sizeof(float);
-}
-
-int getSizeInt(int v[]){
-    return (int)sizeof(v) / sizeof(int);
-}
-
 void initialize_tex_file(FILE *fptr, Project project){
     fprintf(fptr, "\\documentclass{article}\n");
     fprintf(fptr, "\n\\usepackage{graphicx}\n");
@@ -54,7 +41,7 @@ void makeLogisticalGraph(){}
 double sumAll(double *v, int exponent){
     double sum = 0;
 
-    for(int i = 0; i < getSize(v); i++){
+    for(int i = 0; i < getArraySize(v); i++){
         sum += pow(v[i], exponent);
     }
 
@@ -62,5 +49,6 @@ double sumAll(double *v, int exponent){
 }
 
 double calcAverage(double v[]){
-    return sumAll(v, 1) / getSize(v);
+    double *copy = v;
+    return sumAll(copy, 1) / getArraySize(copy);
 }
