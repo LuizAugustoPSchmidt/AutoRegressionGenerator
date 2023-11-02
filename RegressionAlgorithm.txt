@@ -13,3 +13,5 @@ Algoritmo de regressão (mulithread version)
 
 Como calcular o novo chute? Um valor aleatório vai ser muito ineficiente...
 Ver: método de Gauss-Newton
+Alternativamente: Após o chute, verificar o sinal do erro linear. 
+Se for negativo, descarta qualquer chute abaixo daquele. Senão, descarta qualquer chute acima daquele
