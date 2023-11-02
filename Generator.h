@@ -28,9 +28,9 @@ void initialize_tex_file(FILE *fptr, Project project);
 
 void end_tex_file(FILE *fptr, Project project);
 
-void makeLinearGraph(float Vx[], float Vy[]);
+void makeLinearGraph(double Vx[], double Vy[], int size);
 
-void makeQuadracticGraph(float a, float b, float c);
+void makeQuadracticGraph(double Vx[], double Vy[], int size);
 
 void makeCubicGraph(float a, float b, float c, float d);
 
@@ -47,6 +47,8 @@ void makeInverseSquaredGraph();
 double sumAll(double v[], int vSize, int exponent);
 
 double getAvg(double* v, int size, int exponent);
+
+double S(double* a, double* b, int size, int exponent_a, int exponent_b);
 
 double* linearRegression(double x[], double y[], int size);
 

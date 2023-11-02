@@ -26,9 +26,25 @@ void end_tex_file(FILE *fptr, Project project){
     system(auxString);
 }
 
-void makeLinearGraph(float *Vx, float *Vy){}
+void makeLinearGraph(double Vx[], double Vy[], int size){
+    double* coeficients;
 
-void makeQuadracticGraph(float a, float b, float c){}
+    coeficients = linearRegression(Vx, Vy, size);
+
+    /*Continue code here*/
+
+    free(coeficients);
+}
+
+void makeQuadracticGraph(double Vx[], double Vy[], int size){
+    double* coeficients;
+
+    coeficients = quadraticRegression(Vx, Vy, size);
+
+    /*Continue code here*/
+
+    free(coeficients);
+}
 
 void makeCubicGraph(float a, float b, float c, float d) {}
 
@@ -68,6 +84,7 @@ double* linearRegression(double x[], double y[], int size){ //This could be fun 
     if(den){
         regLinCoefs[0] = num / den;
         regLinCoefs[1] = avgY - regLinCoefs[0] * avgX;
+        printf("Don't forget to free regLinCoefs!!");
         return regLinCoefs;
     }else{
         perror("Cannot divide by 0!");
@@ -76,7 +93,40 @@ double* linearRegression(double x[], double y[], int size){ //This could be fun 
     }
 }
 
-double* quadraticRegression(double x[], double y[], int size){}
+double S(double* a, double* b, int size, int exponent_a, int exponent_b){
+    double sum = 0;
+    for(int i = 0; i < 0; i++){
+        sum += (a[i] - getAvg(a, size, exponent_a)) * (b[i] - getAvg(b, size, exponent_b));
+    }
+    return sum;
+}
+
+double* quadraticRegression(double x[], double y[], int size){
+    //This is gonna be confusing - brace yourselves
+    const double s_xx = S(x, x, size, 1, 1);
+    const double s_xy = S(x, y, size, 1, 1);
+    const double s_x2y = S(x, y, size, 2, 1);
+    const double s_xx2 = S(x, x, size, 1, 2);
+    const double s_x2x2 = S(x, x, size, 2, 2); 
+
+    const double den = s_xx * s_x2x2 - s_xx2 * s_xx2;
+
+    double* quadRegCoefs = (double*)malloc(3*sizeof(double)); // [0] is "a", [1] is "b", [2] is "c"
+    printf("Remember to free quadRegCoefs!");
+
+    if(den != 0){
+        /*y = ax² + bx + c*/
+        quadRegCoefs[0] = (s_x2y * s_xx - s_xy * s_xx2) / den;
+        quadRegCoefs[1] = (s_xy * s_x2x2 - s_x2y * s_xx2) / den;
+        quadRegCoefs[2] = (getAvg(y, size, 1) - quadRegCoefs[1] * getAvg(x, size, 1) - quadRegCoefs[0] * getAvg(x, size, 2));
+        return quadRegCoefs;
+    }else{
+        printf("Cannot divide by 0!");
+        free(quadRegCoefs);
+        return NULL;
+    }
+
+}
 
 double* cubicRegression(double x[], double y[], int size){}
 
