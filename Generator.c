@@ -47,8 +47,3 @@ double sumAll(double *v, int exponent){
 
     return sum;
 }
-
-double calcAverage(double v[]){
-    double *copy = v;
-    return sumAll(copy, 1) / getArraySize(copy);
-}
