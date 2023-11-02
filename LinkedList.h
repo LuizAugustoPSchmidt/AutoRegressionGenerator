@@ -1,18 +1,24 @@
 #pragma once
 #include "Generator.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <math.h>
 
 typedef struct ProjectNode{
     GRAPH info;
     struct ProjectNode* next;
 }NODE;
  
- NODE* initialize();
+NODE* initialize();
 
- void printList(NODE* listPtr);
+void printList(NODE* listPtr);
 
+NODE* insertBeggining(NODE* listPtr, GRAPH data);
 
+NODE* insertEnd(NODE* listPtr, GRAPH data);
+
+NODE* insertMiddle(NODE* listPtr, GRAPH data);
+
+NODE* insertInOrder(NODE* listPtr, GRAPH data);
+
+NODE* deleteNode(NODE* listPtr, int code);
+
+NODE* destroyList(NODE* listPtr);
 

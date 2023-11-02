@@ -1,5 +1,6 @@
 /*Note: all - I repeat: ALL - arrays MUST be malloced, otherwise they are not accessible to other functions properly*/
 
+//This could be far better organized - between graphMakers and regressionMakers and all, but dor now it's ok. I wanna focus on the implementation
 //Turns out I'm gonna apply my data structures knowledge here
 #pragma once
 #include <stdio.h>
@@ -7,7 +8,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define getArraySize(v) (sizeof(v)/sizeof(v[0])) //Do not use this macro with pointers, only with arrays
 #define calcAvg(v) (sumAll(v, 1)/getArraySize(v))
 
 typedef struct project{
@@ -40,6 +40,26 @@ void makeLogarithmicGraph(); //Same as LogisticalGraph
 
 void makeLogisticalGraph(); //Haven't even studied logistical regression yet, therefore cannot fill in the parameters: GPT to the rescue!
 
-double sumAll(double v[], int exponent);
+void makeInverseGraph();
 
-double calcAverage(double v[]);
+void makeInverseSquaredGraph();
+
+double sumAll(double v[], int vSize, int exponent);
+
+double getAvg(double* v, int size, int exponent);
+
+double* linearRegression(double x[], double y[]);
+
+double* quadraticRegression(double x[], double y[]);
+
+double* cubicRegression(double x[], double y[]);
+
+double* exponentialRegression(double x[], double y[]);
+
+double* logarithmicRegression(double x[], double y[]);
+
+double* logisticalRegression(double x[], double y[]);
+
+double* inverseRegression(double x[], double y[]);
+
+double* inverseSquaredRegression(double x[], double y[]);

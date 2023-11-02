@@ -38,12 +38,18 @@ void makeLogarithmicGraph(){}
 
 void makeLogisticalGraph(){}
 
-double sumAll(double *v, int exponent){
+double sumAll(double *v, int vSize, int exponent){
     double sum = 0;
 
-    for(int i = 0; i < getArraySize(v); i++){
+    for(int i = 0; i < vSize; i++){ 
         sum += pow(v[i], exponent);
     }
 
     return sum;
 }
+
+double getAvg(double* v, int size, int exponent){
+    return (double)sumAll(v, size, exponent) / size;
+}
+
+
