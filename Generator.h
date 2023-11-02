@@ -32,17 +32,17 @@ void makeLinearGraph(double Vx[], double Vy[], int size);
 
 void makeQuadracticGraph(double Vx[], double Vy[], int size);
 
-void makeCubicGraph(float a, float b, float c, float d);
+void makeCubicGraph(double Vx[], double Vy[], int size);
 
-void makeExponentialGraph(float a, float b);
+void makeExponentialGraph(double Vx[], double Vy[], int size);
 
-void makeLogarithmicGraph(); //Same as LogisticalGraph
+void makeLogarithmicGraph(double Vx[], double Vy[], int size); //Same as LogisticalGraph
 
-void makeLogisticalGraph(); //Haven't even studied logistical regression yet, therefore cannot fill in the parameters: GPT to the rescue!
+void makeLogisticalGraph(double Vx[], double Vy[], int size); //Haven't even studied logistical regression yet, therefore cannot fill in the parameters: GPT to the rescue!
 
-void makeInverseGraph();
+void makeInverseGraph(double Vx[], double Vy[], int size);
 
-void makeInverseSquaredGraph();
+void makeInverseSquaredGraph(double Vx[], double Vy[], int size);
 
 double sumAll(double v[], int vSize, int exponent);
 
