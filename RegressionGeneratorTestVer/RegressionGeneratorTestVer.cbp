@@ -31,7 +31,17 @@
 		<Compiler>
 			<Add option="-Weverything" />
 		</Compiler>
-		<Unit filename="GeneratorTest.h" />
+		<Unit filename="Generator.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="Generator.h" />
+		<Unit filename="LinkedList.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="LinkedList.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

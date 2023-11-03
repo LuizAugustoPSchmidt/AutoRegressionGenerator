@@ -1,4 +1,5 @@
 #include "Generator.h"
+#include <math.h>
 
 void initialize_project(Project* project){
     printf("Insert project name: ");
@@ -68,7 +69,7 @@ void makeLogisticalGraph(double x[], double y[], int size){}
 double sumAll(double *v, int vSize, int exponent){
     double sum = 0;
 
-    for(int i = 0; i < vSize; i++){ 
+    for(int i = 0; i < vSize; i++){
         sum += pow(v[i], exponent);
     }
 
@@ -118,7 +119,7 @@ double* quadraticRegression(double x[], double y[], int size){
     const double s_xy = S(x, y, size, 1, 1);
     const double s_x2y = S(x, y, size, 2, 1);
     const double s_xx2 = S(x, x, size, 1, 2);
-    const double s_x2x2 = S(x, x, size, 2, 2); 
+    const double s_x2x2 = S(x, x, size, 2, 2);
 
     const double den = s_xx * s_x2x2 - s_xx2 * s_xx2;
 

@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1699033842 source:/home/luiz/Documents/AutoRegressionGenerator/RegressionGeneratorTestVer/Generator.c
+	"Generator.h"
+	<math.h>
+
+1699032824 /home/luiz/Documents/AutoRegressionGenerator/RegressionGeneratorTestVer/Generator.h
+	<stdio.h>
+	<math.h>
+	<string.h>
+	<stdlib.h>
+
+1699032824 source:/home/luiz/Documents/AutoRegressionGenerator/RegressionGeneratorTestVer/LinkedList.c
+	"LinkedList.h"
+
+1699032029 /home/luiz/Documents/AutoRegressionGenerator/RegressionGeneratorTestVer/LinkedList.h
+	"Generator.h"
+
+1699032715 source:/home/luiz/Documents/AutoRegressionGenerator/RegressionGeneratorTestVer/main.c
+	"Generator.h"
+	"LinkedList.h"
+
