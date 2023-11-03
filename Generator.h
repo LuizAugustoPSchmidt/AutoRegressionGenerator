@@ -24,6 +24,8 @@ typedef struct graph{
     int graphCode;
 }GRAPH;
 
+void initialize_project(Project* project);
+
 void initialize_tex_file(FILE *fptr, Project project);
 
 void end_tex_file(FILE *fptr, Project project);

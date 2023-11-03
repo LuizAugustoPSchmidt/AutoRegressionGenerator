@@ -1,5 +1,16 @@
 #include "Generator.h"
 
+void initialize_project(Project* project){
+    printf("Insert project name: ");
+    scanf(" %s", project->name);
+
+    printf("\nInsert author name: ");
+    scanf(" %s", project->author);
+
+    printf("\nInsert date: ");
+    scanf(" %s", project->name);
+}
+
 void initialize_tex_file(FILE *fptr, Project project){
     fprintf(fptr, "\\documentclass{article}\n");
     fprintf(fptr, "\n\\usepackage{graphicx}\n");
@@ -46,13 +57,13 @@ void makeQuadracticGraph(double Vx[], double Vy[], int size){
     free(coeficients);
 }
 
-void makeCubicGraph(float a, float b, float c, float d) {}
+void makeCubicGraph(double x[], double y[], int size) {}
 
-void makeExponentialGraph(float a, float b){}
+void makeExponentialGraph(double x[], double y[], int size){}
 
-void makeLogarithmicGraph(){}
+void makeLogarithmicGraph(double x[], double y[], int size){}
 
-void makeLogisticalGraph(){}
+void makeLogisticalGraph(double x[], double y[], int size){}
 
 double sumAll(double *v, int vSize, int exponent){
     double sum = 0;
