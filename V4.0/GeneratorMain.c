@@ -12,7 +12,7 @@ int main(){
 
     double Vx[6], Vy[6];
 
-    for(int i = 0; i < getArraySize(Vx); i++){
+    for(int i = 0; i < (int)getArraySize(Vx); i++){
         printf("--------------------");
         printf("\nInsert x%i: ", i + 1);
         scanf("%lf", &Vx[i]);
