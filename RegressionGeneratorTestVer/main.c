@@ -14,18 +14,18 @@ int main(){
 
     for(int i = 0; i < (int)getArraySize(Vx); i++){
         printf("--------------------");
-        printf("\nInsert x%i: ", i + 1);
+        printf("Insert x%i: ", i + 1);
         scanf("%lf", &Vx[i]);
         printf("\nInsert y%i: ", i + 1);
         scanf("%lf", &Vy[i]);
-        printf("\n--------------------");
+        printf("--------------------");
     }
 
     double* regLinCoefs_main = linearRegression(Vx, Vy, getArraySize(Vx));
 
     system("clear");
 
-    printf("a = %lf\nb = %lf", regLinCoefs_main[0], regLinCoefs_main[1]);
+    printf("\na = %lf\nb = %lf", regLinCoefs_main[0], regLinCoefs_main[1]);
 
     return 0;
 }
