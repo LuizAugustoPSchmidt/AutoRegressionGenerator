@@ -14,6 +14,8 @@ typedef struct project{
     char* name;
     char* date;
     char* author;
+    char* path;
+    int graphQuant;
     FILE* mainPtr;
     FILE* auxPtr;
 }Project;
@@ -57,7 +59,7 @@ double sumAll(double v[], int vSize, int exponent);
 
 double getAvg(double* v, int size, int exponent);
 
-double S(double* a, double* b, int size, int exponent_a, int exponent_b);
+double devToMean(double* a, double* b, int size, int exponent_a, int exponent_b);
 
 double* linearRegression(double x[], double y[], int size);
 

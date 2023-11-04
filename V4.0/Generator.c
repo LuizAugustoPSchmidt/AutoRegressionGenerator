@@ -1,14 +1,28 @@
 #include "Generator.h"
 
 void initialize_project(Project* project){
-    printf("Insert project name: ");
-    scanf(" %s", project->name);
+    printf("Welcome to AutoRegGen!\n\n");
 
-    printf("\nInsert author name: ");
-    scanf(" %s", project->author);
+    printf("Please insert the project's name: ");
+    fgets(project->name, 256, stdin); //In no world is this any safe. But I don't wanna focus on details right now. I'll solve this later 
+    fputs("\n", stdout);
 
-    printf("\nInsert date: ");
-    scanf(" %s", project->name);
+    printf("Please insert the authors' name: ");
+    fgets(project->author, 512, stdin);
+    fputs("\n", stdout);
+
+    printf("Insert today's date: ");
+    fgets(project->date, 12, stdin);
+    fputs("\n", stdout);
+
+    printf("Please insert the number of grpahs you want to generate: ");
+    scanf("%d", &project->graphQuant);
+    fputs("\n", stdout);
+
+    printf("Please insert the full path to the folder in which to create the project: ");
+    fgets(project->path, 256, stdin);
+
+    system("clear");
 }
 
 void initialize_tex_file(FILE *fptr, Project project){
@@ -47,6 +61,7 @@ void makeLinearGraph(GRAPH info, FILE* fptr){
     /*Continue code here*/
     fprintf(fptr, "\\begin{tikzpicture}\n\t\\begin{axis}[title=%s,\n\txlabel={%s},\n\tylabel={%s}]\n", info.title, info.xLabel, info.yLabel);
     fprintf(fptr, "\t\t\\addplot[%s, samples=200]{%lf x + %lf}", info.color,  coeficients[0], coeficients[1]);
+    fprintf(fptr, "\\addplot table {data%i.dat}", info.graphCode);
     fputs("% This document was made using AutRegGen, which calculates the coefficients for various regression types. The data is included in one of the .dat files present in this project", fptr);
     fputs("\n\t\\end{axis}\n\\end{tikzpicture}", fptr);
 
@@ -85,6 +100,14 @@ double getAvg(double* v, int size, int exponent){
     return (double)sumAll(v, size, exponent) / size;
 }
 
+double devToMean(double* a, double* b, int size, int exponent_a, int exponent_b){
+    double sum = 0;
+    for(int i = 0; i < 0; i++){
+        sum += (a[i] - getAvg(a, size, exponent_a)) * (b[i] - getAvg(b, size, exponent_b));
+    }
+    return sum;
+}
+
 double* linearRegression(double x[], double y[], int size){ //This could be fun to write in Haskell
     const double avgX = getAvg(x, size, 1);
     const double avgY = getAvg(y, size, 1);
@@ -110,21 +133,14 @@ double* linearRegression(double x[], double y[], int size){ //This could be fun 
     }
 }
 
-double S(double* a, double* b, int size, int exponent_a, int exponent_b){
-    double sum = 0;
-    for(int i = 0; i < 0; i++){
-        sum += (a[i] - getAvg(a, size, exponent_a)) * (b[i] - getAvg(b, size, exponent_b));
-    }
-    return sum;
-}
 
 double* quadraticRegression(double x[], double y[], int size){
     //This is gonna be confusing - brace yourselves
-    const double s_xx = S(x, x, size, 1, 1);
-    const double s_xy = S(x, y, size, 1, 1);
-    const double s_x2y = S(x, y, size, 2, 1);
-    const double s_xx2 = S(x, x, size, 1, 2);
-    const double s_x2x2 = S(x, x, size, 2, 2); 
+    const double s_xx = devToMean(x, x, size, 1, 1);
+    const double s_xy = devToMean(x, y, size, 1, 1);
+    const double s_x2y = devToMean(x, y, size, 2, 1);
+    const double s_xx2 = devToMean(x, x, size, 1, 2);
+    const double s_x2x2 = devToMean(x, x, size, 2, 2); 
 
     const double den = s_xx * s_x2x2 - s_xx2 * s_xx2;
 
