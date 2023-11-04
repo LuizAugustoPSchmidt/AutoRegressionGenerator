@@ -7,25 +7,80 @@ void initialize_project(Project* project){
     fgets(project->name, 256, stdin); //In no world is this any safe. But I don't wanna focus on details right now. I'll solve this later 
     fputs("\n", stdout);
 
-    printf("Please insert the authors' name: ");
-    fgets(project->author, 512, stdin);
-    fputs("\n", stdout);
-
-    printf("Insert today's date: ");
-    fgets(project->date, 12, stdin);
-    fputs("\n", stdout);
-
-    printf("Please insert the number of grpahs you want to generate: ");
-    scanf("%d", &project->graphQuant);
-    fputs("\n", stdout);
-
     printf("Please insert the full path to the folder in which to create the project: ");
     fgets(project->path, 256, stdin);
 
-    system("clear");
+    if(!mkdir(project->path, 0777)){
+
+        sprintf(project->path, "%s/%s.tex", project->path, project->name);
+
+        if((project->mainPtr = fopen(project->path, "w")) != NULL){
+            printf("Please insert the authors' name: ");
+            fgets(project->author, 512, stdin);
+            fputs("\n", stdout);
+
+            printf("Insert today's date: ");
+            fgets(project->date, 12, stdin);
+            fputs("\n", stdout);
+
+            printf("Please insert the number of grpahs you want to generate: ");
+            scanf("%d", &project->graphQuant);
+            fputs("\n", stdout);
+            
+            system("clear");
+
+        }else{
+            printf("Erro ao criar arquivo .tex");
+            perror("Failed to create file ending in .tex");
+        }
+    }else{
+        printf("Erro ao criar pasta para o projeto");
+        perror("Failed to create directory for the project");
+    }
+
+}
+
+void fetchGraphInfo(GRAPH* graph){
+    printf("Insert the graph's code: ");
+    scanf("%i", &graph->graphCode);
+    puts("\n");
+
+    printf("Insert the graph's title: ");
+    fgets(graph->title, 32, stdin);
+    puts("\n");
+    
+    printf("Insert the graph's color: ");
+    fgets(graph->color, 16, stdin);
+    puts("\n");
+
+    printf("Insert the graph's x label: ");
+    fgets(graph->xLabel, 64, stdin);
+    puts("\n");
+
+    printf("Insert the graph's y label: ");
+    fgets(graph->yLabel, 64, stdin);
+    puts("\n");
+
+    printf("Insert the number of points: ");
+    scanf("%i", &graph->arrSize);
+    puts("\n");
+
+    for(int i = 0; i < graph->arrSize; i++){
+        printf("--------------------");
+
+        printf("Insert x%i: ", i + 1);
+        scanf("%lf", &graph->x[i]);
+
+        printf("\nInsert y%i: ", i + 1);
+        scanf("%lf", &graph->y[i]);
+
+        printf("--------------------");
+    }
+
 }
 
 void initialize_tex_file(FILE *fptr, Project project){
+    //Apparently it's too much for a single buffer. But it's still more readable this way
     fprintf(fptr, "\\documentclass{article}\n");
     fprintf(fptr, "\n\\usepackage{graphicx}\n");
     fprintf(fptr, "\\usepackage{pgfplotstable}\n");
@@ -158,7 +213,7 @@ double* quadraticRegression(double x[], double y[], int size){
         return NULL;
     }
 }
-
+/*
 double* cubicRegression(double x[], double y[], int size){}
 
 double* exponentialRegression(double x[], double y[], int size){}
@@ -170,3 +225,4 @@ double* logisticalRegression(double x[], double y[], int size){}
 double* inverseRegression(double x[], double y[], int size){}
 
 double* inverseSquaredRegression(double x[], double y[], int size){}
+*/

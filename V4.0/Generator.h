@@ -9,12 +9,14 @@
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include<sys/stat.h>
 
 typedef struct project{
     char* name;
     char* date;
     char* author;
-    char* path;
+    char path[1024];
     int graphQuant;
     FILE* mainPtr;
     FILE* auxPtr;
@@ -26,14 +28,16 @@ typedef struct graph{
     double* x;
     double* y;
 
-    const char* title;
-    const char* xLabel;
-    const char* yLabel;
-    const char* color;
+    char* title;
+    char* xLabel;
+    char* yLabel;
+    char* color;
 
 }GRAPH;
 
 void initialize_project(Project* project);
+
+void fetchGraphInfo(GRAPH* graph);
 
 void initialize_tex_file(FILE *fptr, Project project);
 
