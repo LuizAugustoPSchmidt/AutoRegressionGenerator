@@ -37,33 +37,39 @@ void end_tex_file(FILE *fptr, Project project){
     system(auxString);
 }
 
-void makeLinearGraph(double Vx[], double Vy[], int size){
+void makeLinearGraph(GRAPH info, FILE* fptr){
+    /*y = ax + b*/
+    //Color has to be a string accepted by the LaTeX file
+    double* coeficients; //Remember: [0] is "a", [1] is "b"
+
+    coeficients = linearRegression(info.x, info.y, info.arrSize);
+
+    /*Continue code here*/
+    fprintf(fptr, "\\begin{tikzpicture}\n\t\\begin{axis}[title=%s,\n\txlabel={%s},\n\tylabel={%s}]\n", info.title, info.xLabel, info.yLabel);
+    fprintf(fptr, "\t\t\\addplot[%s, samples=200]{%lf x + %lf}", info.color,  coeficients[0], coeficients[1]);
+    fputs("% This document was made using AutRegGen, which calculates the coefficients for various regression types. The data is included in one of the .dat files present in this project", fptr);
+    fputs("\n\t\\end{axis}\n\\end{tikzpicture}", fptr);
+
+    free(coeficients);
+}
+
+void makeQuadracticGraph(GRAPH info, FILE* fptr){
     double* coeficients;
 
-    coeficients = linearRegression(Vx, Vy, size);
+    coeficients = quadraticRegression(info.x, info.y, info.arrSize);
 
     /*Continue code here*/
 
     free(coeficients);
 }
 
-void makeQuadracticGraph(double Vx[], double Vy[], int size){
-    double* coeficients;
+void makeCubicGraph(GRAPH info, FILE* fptr) {}
 
-    coeficients = quadraticRegression(Vx, Vy, size);
+void makeExponentialGraph(GRAPH info, FILE* fptr){}
 
-    /*Continue code here*/
+void makeLogarithmicGraph(GRAPH info, FILE* fptr){}
 
-    free(coeficients);
-}
-
-void makeCubicGraph(double x[], double y[], int size) {}
-
-void makeExponentialGraph(double x[], double y[], int size){}
-
-void makeLogarithmicGraph(double x[], double y[], int size){}
-
-void makeLogisticalGraph(double x[], double y[], int size){}
+void makeLogisticalGraph(GRAPH info, FILE* fptr){}
 
 double sumAll(double *v, int vSize, int exponent){
     double sum = 0;

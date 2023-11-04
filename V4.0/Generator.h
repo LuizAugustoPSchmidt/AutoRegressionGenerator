@@ -19,9 +19,16 @@ typedef struct project{
 }Project;
 
 typedef struct graph{
-    int* x;
-    int* y;
     int graphCode;
+    int arrSize;
+    double* x;
+    double* y;
+
+    const char* title;
+    const char* xLabel;
+    const char* yLabel;
+    const char* color;
+
 }GRAPH;
 
 void initialize_project(Project* project);
@@ -30,21 +37,21 @@ void initialize_tex_file(FILE *fptr, Project project);
 
 void end_tex_file(FILE *fptr, Project project);
 
-void makeLinearGraph(double Vx[], double Vy[], int size);
+void makeLinearGraph(GRAPH info, FILE* fptr);
 
-void makeQuadracticGraph(double Vx[], double Vy[], int size);
+void makeQuadracticGraph(GRAPH info, FILE* fptr);
 
-void makeCubicGraph(double Vx[], double Vy[], int size);
+void makeCubicGraph(GRAPH info, FILE* fptr);
 
-void makeExponentialGraph(double Vx[], double Vy[], int size);
+void makeExponentialGraph(GRAPH info, FILE* fptr);
 
-void makeLogarithmicGraph(double Vx[], double Vy[], int size); //Same as LogisticalGraph
+void makeLogarithmicGraph(GRAPH info, FILE* fptr); //Same as LogisticalGraph
 
-void makeLogisticalGraph(double Vx[], double Vy[], int size); //Haven't even studied logistical regression yet, therefore cannot fill in the parameters: GPT to the rescue!
+void makeLogisticalGraph(GRAPH info, FILE* fptr); //Haven't even studied logistical regression yet, therefore cannot fill in the parameters: GPT to the rescue!
 
-void makeInverseGraph(double Vx[], double Vy[], int size);
+void makeInverseGraph(GRAPH info, FILE* fptr);
 
-void makeInverseSquaredGraph(double Vx[], double Vy[], int size);
+void makeInverseSquaredGraph(GRAPH info, FILE* fptr);
 
 double sumAll(double v[], int vSize, int exponent);
 
