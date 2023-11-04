@@ -39,6 +39,8 @@ void initialize_project(Project* project);
 
 void fetchGraphInfo(GRAPH* graph);
 
+void selectRegType(Project project, GRAPH auxGraphBuff);
+
 void initialize_tex_file(FILE *fptr, Project project);
 
 void end_tex_file(FILE *fptr, Project project);

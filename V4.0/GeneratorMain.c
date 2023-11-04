@@ -1,31 +1,26 @@
+/*
+AutoRegGen - Luiz Augusto Schmidt
+LINUX version
+Please use as you see fit
+*/
+
 #include "Generator.h"
-#include "LinkedList.h"
+//#include "LinkedList.h"
 
 #define getArraySize(v) (sizeof(v)/sizeof(v[0])) 
 
 int main(){
     Project project;
+    GRAPH auxGraphBuff;
+    int graphRegType;
 
-    /*I'm only doing this to test this version. It's absolutely not the end product nor it's gonna last long*/
-    //project.mainPtr = fopen("~/home/luiz/Documents/geral/test.tex", "w");
-    //initialize_project(&project);
+    initialize_project(&project);
 
-    double Vx[6], Vy[6];
-
-    for(int i = 0; i < (int)getArraySize(Vx); i++){
-        printf("--------------------");
-        printf("\nInsert x%i: ", i + 1);
-        scanf("%lf", &Vx[i]);
-        printf("\nInsert y%i: ", i + 1);
-        scanf("%lf", &Vy[i]);
-        printf("\n--------------------");
+    for(int i = 0; i < project.graphQuant; i++){
+        fetchGraphInfo(&auxGraphBuff);
+        selectRegType(project, auxGraphBuff); 
     }
 
-    double* regLinCoefs_main = linearRegression(Vx, Vy, getArraySize(Vx)); 
-
-    system("clear");
-
-    printf("a = %lf\nb = %lf", regLinCoefs_main[0], regLinCoefs_main[1]);
-
+    end_tex_file(project.mainPtr, project);
     return 0;
 }

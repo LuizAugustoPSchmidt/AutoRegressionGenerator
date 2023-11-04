@@ -79,6 +79,21 @@ void fetchGraphInfo(GRAPH* graph){
 
 }
 
+void selectRegType(Project project, GRAPH auxGraphBuff){
+    int graphRegType;
+    printf("Insert regression type: \n");
+    printf("1 - Linear\n2 - Quadratic");
+    scanf("%i", &graphRegType);
+    switch(graphRegType){
+        case 1:
+            makeLinearGraph(auxGraphBuff, project.mainPtr);
+            break;
+        case 2: 
+            makeQuadracticGraph(auxGraphBuff, project.mainPtr);
+            break;
+    }
+}
+
 void initialize_tex_file(FILE *fptr, Project project){
     //Apparently it's too much for a single buffer. But it's still more readable this way
     fprintf(fptr, "\\documentclass{article}\n");
