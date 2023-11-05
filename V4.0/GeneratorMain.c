@@ -12,7 +12,6 @@ Please use as you see fit
 int main(){
     Project project;
     GRAPH auxGraphBuff;
-    int graphRegType;
 
     initialize_project(&project);
 

@@ -1,7 +1,5 @@
 #include "LinkedList.h"
 
-
-
 NODE* initialize(){
     return NULL;
 }
