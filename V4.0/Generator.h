@@ -43,7 +43,7 @@ void selectRegType(Project project, GRAPH auxGraphBuff);
 
 void initialize_tex_file(FILE *fptr, Project project);
 
-void end_tex_file(FILE *fptr, Project project);
+void end_tex_file(FILE *fptr, Project project); //It may seem weird, but I need the project's name to COMPILE IT AS SOON AS THE PROGRAM ENDS!
 
 void makeLinearGraph(GRAPH info, FILE* fptr);
 
